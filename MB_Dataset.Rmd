@@ -7,3 +7,14 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+library(readr)
+```
+
+
+```{r}
+Master <- read_csv("baseballdatabank-2017.1/core/Master.csv")
+View(Master)
+```
+
+
