@@ -9,12 +9,16 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 library(readr)
+library(tidyverse)
 ```
 
 
 ```{r}
-Master <- read_csv("baseballdatabank-2017.1/core/Master.csv")
-View(Master)
+Master <- read_csv("Baseball_Index/Master.csv")
+Batting <- read_csv("Baseball_Index/Batting.csv")
+Pitching <- read_csv("Baseball_Index/Pitching.csv")
+Fielding <- read_csv("Baseball_Index/Fielding.csv")
 ```
+
 
 
