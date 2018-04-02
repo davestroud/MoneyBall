@@ -39,10 +39,15 @@ head(Batting_df)
 ```
 
 As you would expect, there is a positive linear relationship between at bats and RBI's. Similiar results with the other variables in this data set as well. 
-
 ```{r}
-ggplot(data = Batting_df) + 
-  geom_point(mapping = aes(x = AB, y = RBI), color="blue") +
-  geom_smooth(mapping = aes(x = AB, y = RBI))
+ggplot(data = Batting_df, mapping = aes(x = AB, y = RBI)) +
+  geom_smooth() +
+  geom_point() 
+```
+
+Interesting chart that shows how many games most players play.
+```{r}
+ggplot(data = Batting_df) +
+  geom_bar(mapping = aes(x=G), color='blue')
 ```
 
