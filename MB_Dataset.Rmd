@@ -47,7 +47,39 @@ ggplot(data = Batting_df, mapping = aes(x = AB, y = RBI)) +
 
 Interesting chart that shows how many games most players play.
 ```{r}
+# Basic barplot in ggplot
 ggplot(data = Batting_df) +
   geom_bar(mapping = aes(x=G), color='blue')
 ```
+
+
+
+```{r}
+# Use of statistical transformation in this code
+# Not helpful here, but could have future use
+ggplot(data = Batting_df) +
+  stat_summary(
+    mapping = aes(x = AB, y = RBI),
+    fun.ymin = min,
+    fun.ymax = max,
+    fun.y = median
+  )
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
