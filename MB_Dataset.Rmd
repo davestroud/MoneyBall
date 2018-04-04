@@ -35,6 +35,7 @@ BattingPost_df <- filter(BattingPost, yearID == 2012, 2013, 2014, 2015, 2016)
 
 
 ```{r}
+# Data set focusing on batting, pitching and fielding
 Multiple <- left_join(Batting_df,Pitching_df,Fielding_df, by="playerID")
 View(Multiple)
 ```
