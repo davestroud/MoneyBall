@@ -35,8 +35,12 @@ BattingPost_df <- filter(BattingPost, yearID == 2012, 2013, 2014, 2015, 2016)
 
 
 ```{r}
-head(Batting_df)
+Multiple <- left_join(Batting_df,Pitching_df,Fielding_df, by="playerID")
+View(Multiple)
 ```
+
+
+
 
 As you would expect, there is a positive linear relationship between at bats and RBI's. Similiar results with the other variables in this data set as well. 
 ```{r}
