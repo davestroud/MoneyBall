@@ -27,5 +27,5 @@ dim(Batting_df)
 # Look at column names
 names(Batting_df)
 
-# Look at structure
-str(Batting_df)
+# Look at data structure, dyplr way
+glimpse(Batting_df)
