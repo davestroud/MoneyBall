@@ -26,3 +26,6 @@ dim(Batting_df)
 
 # Look at column names
 names(Batting_df)
+
+# Look at structure
+str(Batting_df)
