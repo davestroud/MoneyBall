@@ -33,6 +33,11 @@ glimpse(Batting_df)
 # View summary statistics
 summary(Batting_df)
 
+
+two_sets <- left_join(Batting_df, Fielding_df, by= c("playerID", "teamID"))
+
+
+
 library(Lahman)
 
 
