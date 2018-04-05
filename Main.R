@@ -29,3 +29,6 @@ names(Batting_df)
 
 # Look at data structure, dyplr way
 glimpse(Batting_df)
+
+# View summary statistics
+summary(Batting_df)
