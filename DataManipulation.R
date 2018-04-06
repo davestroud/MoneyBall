@@ -1,12 +1,15 @@
 library(dplyr)
 library(hflights)
 
+# View data
 head(hflights)
 summary(hflights)
 glimpse(hflights)
 
+# Turn data frame into tibble
 hflights <-tbl_df(hflights)
 
+# Make Carrier column easier to read.
 lut <- c("AA" = "American", "AS" = "Alaska", "B6" = "JetBlue", "CO" = "Continental", 
          "DL" = "Delta", "OO" = "SkyWest", "UA" = "United", "US" = "US_Airways", 
          "WN" = "Southwest", "EV" = "Atlantic_Southeast", "F9" = "Frontier", 
