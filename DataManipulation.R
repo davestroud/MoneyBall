@@ -63,3 +63,22 @@ ex3r <- hflights[c("TailNum", "TaxiIn", "TaxiOut")]
 ex3d <- select(hflights, starts_with("T"))
 
 ###############################################################################
+
+# Mutation
+
+# Add the new variable ActualGroundTime to a copy of hflights and save result as g1.
+g1 <- mutate(hflights, ActualGroundTime = ActualElapsedTime - AirTime)
+
+# Add the new variable GroundTime to g1. Save the result as g2.
+g2 <- mutate(g1, GroundTime = TaxiIn + TaxiOut)
+
+# Add the new variable AverageSpeed to g2. Save the result as g3.
+g3 <- mutate(g2, AverageSpeed = Distance / AirTime * 60)
+
+# Print out g3
+g3
+
+###############################################################################
+
+
+
