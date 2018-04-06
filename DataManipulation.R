@@ -80,5 +80,14 @@ g3
 
 ###############################################################################
 
+# Add multiple variables using mutate
+
+# Add a second variable loss_ratio to the dataset: m1
+m1 <- mutate(hflights, loss = ArrDelay - DepDelay, loss_ratio = loss / DepDelay)
+
+# Add the three variables as described in the third instruction: m2
+m2 <- mutate(hflights, TotalTaxi = TaxiIn + TaxiOut, 
+             ActualGroundTime = ActualElapsedTime - AirTime,
+             Diff = TotalTaxi - ActualGroundTime)
 
 
