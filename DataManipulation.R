@@ -16,6 +16,7 @@ lut <- c("AA" = "American", "AS" = "Alaska", "B6" = "JetBlue", "CO" = "Continent
 hflights$Carrier <- lut[hflights$UniqueCarrier]
 
 #######################################################################
+# The select verb
 
 # Print out a tbl with the four columns of hflights related to delay
 select(hflights, ActualElapsedTime, AirTime, ArrDelay, DepDelay)
@@ -29,6 +30,7 @@ select(hflights, 14:19)
 select(hflights, 1:4, 12:21)
 
 ################################################################################
+# Helper functions and variable selection
 
 # Print out a tbl containing just ArrDelay and DepDelay
 select(hflights, ends_with("Delay"))
@@ -42,8 +44,9 @@ select(hflights, UniqueCarrier, ends_with("Num"), starts_with("Cancel"))
 select(hflights, contains("Tim"), contains("Del"))
 
 
-
 ############################################################################
+# Comparison to base R
+
 # Finish select call so that ex1d matches ex1r
 ex1r <- hflights[c("TaxiIn", "TaxiOut", "Distance")]
 ex1d <- select(hflights, contains("Taxi"), Distance)
@@ -56,4 +59,4 @@ ex2d <- select(hflights, Year:ArrTime, -DayofMonth)
 ex3r <- hflights[c("TailNum", "TaxiIn", "TaxiOut")]
 ex3d <- select(hflights, starts_with("T"))
 
-
+###############################################################################
