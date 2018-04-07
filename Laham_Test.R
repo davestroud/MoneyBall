@@ -127,7 +127,16 @@ Salaries %>%
   summarize(avg_salary = mean(max_salary, na.rm = TRUE))
 
 
-
+Appearances %>% 
+  # Filter Appearances against nominated
+  semi_join(nominated, by = "playerID") %>% 
+  # Find last year played by player
+  group_by(playerID) %>% 
+  summarize(last_year = max(yearID)) %>% 
+  # Join to full HallOfFame
+  left_join(HallOfFame, by = "playerID") %>% 
+  # Filter for unusual observations
+  filter(last_year >= yearID)
 
 ################################################
 # Visualize relations among datasets via an MDS
