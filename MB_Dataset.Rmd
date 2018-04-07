@@ -41,7 +41,13 @@ Multiple <- left_join(Batting_df,Pitching_df, fielding_df, by="playerID")
 
 
 ```{r}
-dim(Batting_df)
+Multiple <- mutate(Multiple, G = G.x + G.y) 
+```
+
+
+
+```{r}
+reduce(Multiple, intersect)
 
 ```
 
