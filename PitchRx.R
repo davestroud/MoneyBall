@@ -1,7 +1,7 @@
 library(pitchRx)
 library(tidyverse)
-db <- src_sqlite("pitchfx.sqlite3", create = T)
-scrape(start = "2012-01-01", end = Sys.Date(), connect = db$con)
+db_2017 <- src_sqlite("pitchfx.sqlite3", create = T)
+scrape(start = "2016-01-01", end = "2017-01-01", connect = db$con)
 
 library(readr)
 pitch_2018_04_07_16_48_20 <- read_csv("pitch-2018-04-07-16-48-20.csv")
@@ -12,3 +12,10 @@ View(atbat_2018_04_07_16_48_58)
 
 runner_2018_04_07_16_48_20 <- read_csv("runner-2018-04-07-16-48-20.csv")
 View(runner_2018_04_07_16_48_20)
+
+files <- c("miniscoreboard.xml", "players.xml", "inning/inning_hit.xml")
+scrape(start = "2008-01-01", end = Sys.Date(), suffix = files, connect = db$con)
+
+
+library(pitchRx)
+dat <- scrape(start = "2013-06-01", end = "2013-06-01")
