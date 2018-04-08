@@ -19,3 +19,5 @@ scrape(start = "2008-01-01", end = Sys.Date(), suffix = files, connect = db$con)
 
 library(pitchRx)
 dat <- scrape(start = "2013-06-01", end = "2013-06-01")
+
+names(dat)
