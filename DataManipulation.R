@@ -103,3 +103,16 @@ filter(hflights, UniqueCarrier %in% c("JetBlue", "Southwest", "Delta"))
 # All flights where taxiing took longer than flying
 filter(hflights, TaxiIn + TaxiOut > AirTime)
 
+###############################################################################
+
+# Combining tests using boolean operators
+
+# All flights that departed before 5am or arrived after 10pm
+filter(hflights, DepTime < 500 | ArrTime > 2200)
+
+# All flights that departed late but arrived ahead of schedule
+filter(hflights, DepDelay > 0, ArrDelay < 0 )
+
+# All flights that were cancelled after being delayed
+filter(hflights, Cancelled > 0, DepDelay > 0)
+
