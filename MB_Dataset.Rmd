@@ -12,7 +12,6 @@ library(readr)
 library(tidyverse)
 ```
 
-
 ```{r}
 Appearances <- read.csv("Baseball_Index/Appearances.csv")
 Master <- read_csv("Baseball_Index/Master.csv")
@@ -24,7 +23,6 @@ AllStar <- read_csv("Baseball_Index/AllstarFull.csv")
 Salaries <- read_csv("Baseball_Index/Salaries.csv")
 Teams <- read_csv("Baseball_Index/Teams.csv")
 ```
-
 
 ```{r}
 Appearances_df <-filter(Appearances, yearID == 2012, 2013, 2014, 2015, 2016)
@@ -38,24 +36,37 @@ Salaries_df <- filter(Salaries, yearID == 2012, 2013, 2014, 2015, 2016)
 ```
 
 
+
+```{r}
+filter(Batting_df, H > 200)
+```
+
+
+
+
 ```{r}
 # Data set focusing on batting, pitching and fielding
 PlayBall <- left_join(Batting_df,Pitching_df, Fielding_df, by="playerID")
+View(PlayBall)
 ```
+
+```{r}
+Other <- left_join(AllStar_df, Appearances_df, Salaries_df, by="yearID")
+View(Other)
+```
+
+
+
 
 
 ```{r}
 PlayBall <- mutate(PlayBall, G = G.x + G.y) 
 ```
 
-
-
 ```{r}
 reduce(PlayBall, intersect)
 
 ```
-
-
 
 As you would expect, there is a positive linear relationship between at bats and RBI's. Similiar results with the other variables in this data set as well. 
 ```{r}
@@ -72,8 +83,6 @@ Interesting chart that shows how many games most players play.
 ggplot(data = Pitching_df) +
   geom_bar(mapping = aes(x=G, color='blue'))
 ```
-
-
 
 ```{r}
 # Use of statistical transformation in this code
