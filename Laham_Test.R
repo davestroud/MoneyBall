@@ -169,3 +169,5 @@ text(config[,1], config[,2], rownames(config), cex = 0.75, pos=pos, xpd=NA)
 
 
 
+head(Master)
+
