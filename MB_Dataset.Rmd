@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(readr)
 library(tidyverse)
+library(highcharter) # Need to do more research on this subject
 ```
 
 ```{r}
@@ -36,11 +37,15 @@ Salaries_df <- filter(Salaries, yearID == 2012, 2013, 2014, 2015, 2016)
 ```
 
 
+```{r}
+ggplot(data = Batting_df) +
+  geom_point(mapping = aes(x= H, y = AB, color = teamID))
+```
+
 
 ```{r}
 filter(Batting_df, H > 200)
 ```
-
 
 
 
@@ -59,7 +64,6 @@ View(Other)
 ```{r}
 MasterList <- left_join(PlayBall, Other, by="GS")
 ```
-
 
 
 ```{r}
