@@ -56,6 +56,9 @@ View(Other)
 ```
 
 
+```{r}
+MasterList <- left_join(PlayBall, Other, by="GS")
+```
 
 
 
