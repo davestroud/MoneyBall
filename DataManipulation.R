@@ -92,4 +92,14 @@ m2 <- mutate(hflights, TotalTaxi = TaxiIn + TaxiOut,
 
 ###############################################################################
 
+# Logical operators
+
+# All flights that traveled 3000 miles or more
+filter(hflights, Distance >= 3000)
+
+# All flights flown by JetBlue, Southwest, or Delta
+filter(hflights, UniqueCarrier %in% c("JetBlue", "Southwest", "Delta"))
+
+# All flights where taxiing took longer than flying
+filter(hflights, TaxiIn + TaxiOut > AirTime)
 

@@ -40,4 +40,3 @@ x <- list(
 )
 animateFX(pitches, layer = x)
 
-
