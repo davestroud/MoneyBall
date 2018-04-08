@@ -40,18 +40,18 @@ Salaries_df <- filter(Salaries, yearID == 2012, 2013, 2014, 2015, 2016)
 
 ```{r}
 # Data set focusing on batting, pitching and fielding
-Multiple <- left_join(Batting_df,Pitching_df, fielding_df, by="playerID")
+PlayBall <- left_join(Batting_df,Pitching_df, Fielding_df, by="playerID")
 ```
 
 
 ```{r}
-Multiple <- mutate(Multiple, G = G.x + G.y) 
+PlayBall <- mutate(PlayBall, G = G.x + G.y) 
 ```
 
 
 
 ```{r}
-reduce(Multiple, intersect)
+reduce(PlayBall, intersect)
 
 ```
 
@@ -60,7 +60,7 @@ reduce(Multiple, intersect)
 As you would expect, there is a positive linear relationship between at bats and RBI's. Similiar results with the other variables in this data set as well. 
 ```{r}
 # Add jitter feature to spread out points
-ggplot(data = Multiple, mapping = aes(x = AB, y = RBI)) +
+ggplot(data = PlayBall, mapping = aes(x = AB, y = RBI)) +
   geom_smooth() +
   geom_point() +
   geom_jitter() 
@@ -69,8 +69,8 @@ ggplot(data = Multiple, mapping = aes(x = AB, y = RBI)) +
 Interesting chart that shows how many games most players play.
 ```{r}
 # Basic barplot in ggplot
-ggplot(data = Multiple) +
-  geom_bar(mapping = aes(x=G, color='blue')
+ggplot(data = Pitching_df) +
+  geom_bar(mapping = aes(x=G, color='blue'))
 ```
 
 
@@ -87,13 +87,7 @@ ggplot(data = Batting_df) +
   )
 ```
 
-```{r}
-# Color a bar chart using fill
-ggplot(data= Multiple) +
-  geom_bar(mapping = aes(x=class, y = )) +
-  coord_flip() # Used to flip the coordinate
-  
-```
+
 
 
 
