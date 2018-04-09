@@ -116,3 +116,23 @@ filter(hflights, DepDelay > 0, ArrDelay < 0 )
 # All flights that were cancelled after being delayed
 filter(hflights, Cancelled > 0, DepDelay > 0)
 
+
+###############################################################################
+
+# Blend together what you've learned!
+
+# Select the flights that had JFK as their destination: c1
+c1 <- filter(hflights, Dest == "JFK")
+
+# Combine the Year, Month and DayofMonth variables to create a Date column: c2
+c2 <- mutate(c1, Date = paste(Year, Month, DayofMonth, sep = "-"))
+
+# Print out a selection of columns of c2
+select(c2, Date, DepTime, ArrTime, TailNum)
+
+
+
+
+
+
+

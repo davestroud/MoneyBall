@@ -39,7 +39,8 @@ Salaries_df <- filter(Salaries, yearID == 2012, 2013, 2014, 2015, 2016)
 
 ```{r}
 ggplot(data = Batting_df) +
-  geom_point(mapping = aes(x= H, y = AB, color = teamID))
+  geom_point(mapping = aes(x= RBI, y = R, color = teamID)) 
+
 ```
 
 
