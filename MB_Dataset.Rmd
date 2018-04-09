@@ -38,6 +38,31 @@ Salaries_df <- filter(Salaries, yearID == 2012, 2013, 2014, 2015, 2016)
 
 
 ```{r}
+library(GGally)
+ data(Batting_df, package = "reshape")
+ ggally_dot_and_box(
+   Batting_df,
+   mapping = ggplot2::aes(x = RBI, y = R, color = R),
+   boxPlot = TRUE
+ )
+ ggally_dot_and_box(
+   Batting_df,
+   mapping = ggplot2::aes(x = RBI, y = R, color = R),
+   boxPlot = FALSE
+ )
+```
+
+
+
+
+
+```{r}
+ggcorr(Batting_df, palette = "RdBu", label = TRUE)
+```
+
+
+
+```{r}
 library(highcharter)
 hchart(Batting_df, "scatter", hcaes(x = RBI, y = R, group = teamID) )
 ```
