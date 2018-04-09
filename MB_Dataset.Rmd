@@ -38,6 +38,13 @@ Salaries_df <- filter(Salaries, yearID == 2012, 2013, 2014, 2015, 2016)
 
 
 ```{r}
+library(highcharter)
+hchart(Batting_df, "scatter", hcaes(x = RBI, y = R, group = teamID) )
+```
+
+
+
+```{r}
 ggplot(data = Batting_df) +
   geom_point(mapping = aes(x= RBI, y = R, color = teamID)) 
 
