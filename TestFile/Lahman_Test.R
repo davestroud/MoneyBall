@@ -53,3 +53,16 @@ ggplot(subset(wildcard_era_teams, Playoff == 'Y'), aes(W)) +
   geom_vline(xintercept = median(wildcard_era_teams$W[wildcard_era_teams$Playoff == 'Y']), color = 'green', linetype = 'longdash') +
   xlab('Frequency') + ylab('Wins') +
   ggtitle('Histogram of Win Counts\nWith lines at mean and median')
+
+
+ggplot(wildcard_era_teams, aes(W, color = Playoff)) + 
+  geom_histogram(position = 'dodge', binwidth = 2) +
+  coord_cartesian(xlim=c(50,120)) +
+  geom_vline(xintercept = 94, linetype = 2) +
+  xlab('Wins') + ylab('Count') +
+  ggtitle('Histogram of Wins Sorted By Playoff Appearance\nWith line at mean of 94')
+
+
+
+
+
