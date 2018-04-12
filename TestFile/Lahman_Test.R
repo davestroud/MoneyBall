@@ -28,6 +28,14 @@ teams$teamID[teams$teamID == 'ML4'] <- 'MIL'
 teams$teamID[teams$teamID == 'MON'] <- 'WAS'
 teams$teamID[teams$teamID == 'ANA'] <- 'LAA'
 
+# new column to display if team made playoffs
+# already column is team won division but need to add wild card teams
+teams$Playoff <- teams$DivWin
+# this only adds the the division winners so we need to also add the wild card winners
+teams$Playoff[teams$WCWin == 'Y'] <- 'Y'
+# convert Playoff to factor 
+teams$Playoff <- factor(teams$Playoff)
+
 
 
 
