@@ -44,5 +44,12 @@ table(wildcard_era_teams$G == 144, wildcard_era_teams$yearID)
 with(wildcard_era_teams, table(yearID == 1995, G))
 
 
+wildcard_era_teams <- teams[teams$yearID >= 1996, ]
 
 
+ggplot(subset(wildcard_era_teams, Playoff == 'Y'), aes(W)) + 
+  geom_histogram(fill = 'light blue', color = 'black', binwidth = 1) + 
+  geom_vline(xintercept = mean(wildcard_era_teams$W[wildcard_era_teams$Playoff == 'Y']), color = 'red', linetype = 'longdash') +
+  geom_vline(xintercept = median(wildcard_era_teams$W[wildcard_era_teams$Playoff == 'Y']), color = 'green', linetype = 'longdash') +
+  xlab('Frequency') + ylab('Wins') +
+  ggtitle('Histogram of Win Counts\nWith lines at mean and median')
