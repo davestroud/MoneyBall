@@ -40,6 +40,8 @@ teams$Playoff <- factor(teams$Playoff)
 wildcard_era_teams <- teams[teams$yearID >= 1995, ]
 table(wildcard_era_teams$G == 144, wildcard_era_teams$yearID)
 
+# use 1996 as cutoff
+with(wildcard_era_teams, table(yearID == 1995, G))
 
 
 
