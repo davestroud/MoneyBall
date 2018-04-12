@@ -28,3 +28,15 @@ hcmap("countries/us/us-all-all", data = unemployment,
   hc_colorAxis(dataClasses = color_classes(c(seq(0, 10, by = 2), 50))) %>%
   hc_legend(layout = "vertical", align = "right",
             floating = TRUE, valueDecimals = 0, valueSuffix = "%")
+
+
+
+
+
+hchart(mpg, "scatter", hcaes(x = displ, y = hwy, group = class))
+
+
+
+
+
+
