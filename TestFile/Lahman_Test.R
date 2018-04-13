@@ -72,3 +72,12 @@ paste0("With an accuracy of ", round(407 /(407 + 1), 3))
 over94_no_playoff <- wildcard_era_teams[(wildcard_era_teams$W >= 94) & 
                                           (wildcard_era_teams$Playoff == 'N'), ]
 paste0("Team with 96 wins and didn't make playoffs is The ", over94_no_playoff$name)
+
+
+# plot to show team wins and playoff appearance
+ggplot(wildcard_era_teams, aes(teamID, W, color = Playoff)) + geom_point() + 
+  theme(axis.text.x = element_text(angle = 45)) +
+  xlab('Team') + ylab('Wins') + 
+  geom_hline(yintercept = 94, linetype = 2) +
+  ggtitle('Wins By Team Colored By Playoffs Appearances')
+
