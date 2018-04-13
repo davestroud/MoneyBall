@@ -162,6 +162,16 @@ corrplot(corMatrix, method = "circle", type="lower", tl.cex=0.55, cl.cex = 0.5, 
 corrplot(corMatrix, method = "shade", type="upper", tl.cex=0.55, cl.cex = 0.5, add = TRUE, tl.pos="upper")
 
 
+# plot wins vs runs
+p1 <- ggplot(train, aes(W, R)) + geom_point(aes(color = Playoff)) + 
+  xlab('Wins') + ylab('Runs') +
+  ggtitle('Wins Per Runs\ncolored by Playoff Teams')
+# plot wins vs runs given up
+p2 <- ggplot(train, aes(W, RA)) + geom_point(aes(color = Playoff)) + 
+  xlab('Wins') + ylab('Runs Against') +
+  ggtitle('Wins Per Runs Against\n colored by Playoff Teams')
+
+grid.arrange(p1, p2, ncol = 2)
 
 
 
