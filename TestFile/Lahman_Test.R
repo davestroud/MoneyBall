@@ -355,3 +355,11 @@ sum(diag(table(predTestglm > 0.5, binary_test$Playoff))) / nrow(binary_test)
 
 ROCRpredglm <- prediction(predTestglm, binary_test$Playoff)
 as.numeric(performance(ROCRpredglm, 'auc')@y.values)
+
+# LDA test predictions
+predTestlda <- predict(best_model_lda, newdata = binary_test)
+
+table(predTestlda$class, binary_test$Playoff)
+
+sum(diag(table(predTestlda$class, binary_test$Playoff))) / nrow(binary_test)
+
