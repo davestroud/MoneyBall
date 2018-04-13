@@ -66,4 +66,6 @@ ggplot(wildcard_era_teams, aes(W, color = Playoff)) +
 # only care about that lonely one team with the True Positive within the cunfusion matrix
 table(wildcard_era_teams$W > 94, wildcard_era_teams$Playoff == 'N')
 
+paste0("With an accuracy of ", round(407 /(407 + 1), 3))
+
 
