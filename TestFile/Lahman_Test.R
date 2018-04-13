@@ -242,7 +242,10 @@ p4 <- ggplot(train, aes(RA, E)) +
 grid.arrange(p1, p2, p3, p4, ncol = 2)
 
 
-
+ggplot(train, aes(W, Salary)) + geom_point(aes(color = Playoff)) +
+  facet_wrap(~ yearID) + 
+  xlab('Runs') + ylab('Team Salary') +
+  ggtitle('Total Wins By Salary')
 
 
 
