@@ -113,3 +113,37 @@ ggplot(wildcard_era_teams, aes(teamID, W)) +
   ggtitle('Boxplots of Teams vs Wins')
 
 
+# transform NA for sac flies and hit by pitches to O so can compute correlation matrix 
+wildcard_era_teams$SF[is.na(wildcard_era_teams$SF)] <- 0
+wildcard_era_teams$HBP[is.na(wildcard_era_teams$HBP)] <- 0
+# new column for team Batting Average
+wildcard_era_teams$BA <- wildcard_era_teams$H / wildcard_era_teams$AB
+# new column for team On-Base Percentage
+# this will return NA for seasone beofre HBP was actually recorded but this will not 
+# affect the analysis
+wildcard_era_teams <- transform(wildcard_era_teams, OBP = (H + BB + HBP) / 
+                                  (AB + BB + HBP + SF))
+
+# new column for team Slugging Percentage
+wildcard_era_teams <- transform(wildcard_era_teams, SLG = (H + X2B + (2 * X3B) + 
+                                                             (3 * HR)) / AB)
+wildcard_era_teams <- transform(wildcard_era_teams, OPS = OBP + SLG)
+# new column for run differential  
+wildcard_era_teams$Diff <- wildcard_era_teams$R - wildcard_era_teams$RA
+
+
+#subset same years for salary
+wildcard_era_salaries <- salaries[salaries$yearID >= 1996, ]
+# pick out desired columns to perform merge
+team_salaries <- wildcard_era_salaries %>%
+  group_by(teamID, yearID) %>%
+  summarise(Salary = sum(salary)) %>%
+  ungroup() %>%
+  arrange(teamID)
+wildcard_era_teams <- merge(wildcard_era_teams, team_salaries, by = c('teamID', 'yearID'))
+
+
+
+
+
+
