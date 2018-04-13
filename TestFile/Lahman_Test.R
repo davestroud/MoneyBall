@@ -347,3 +347,11 @@ binary_test <- test
 # change Playoff to 1 for Y and 0 for N
 binary_test$Playoff <- ifelse(binary_test$Playoff == 'Y', 1, 0)
 
+predTestglm <- predict(best_model_glm, newdata = binary_test, type = 'response')
+
+table(predTestglm > 0.5, binary_test$Playoff)
+
+sum(diag(table(predTestglm > 0.5, binary_test$Playoff))) / nrow(binary_test)
+
+ROCRpredglm <- prediction(predTestglm, binary_test$Playoff)
+as.numeric(performance(ROCRpredglm, 'auc')@y.values)
