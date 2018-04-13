@@ -278,5 +278,7 @@ EvalModelAUC <- function(model) {
 c(EvalModelCF(glmfit1), EvalModelCF(glmfit2), EvalModelCF(glmfit3),
   EvalModelCF(glmfit4), EvalModelCF(glmfit5))
 
-
+# predict on training set AUC
+c(EvalModelAUC(glmfit1), EvalModelAUC(glmfit2), EvalModelAUC(glmfit3),
+  EvalModelAUC(glmfit4), EvalModelAUC(glmfit5))
 
