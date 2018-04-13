@@ -282,3 +282,14 @@ c(EvalModelCF(glmfit1), EvalModelCF(glmfit2), EvalModelCF(glmfit3),
 c(EvalModelAUC(glmfit1), EvalModelAUC(glmfit2), EvalModelAUC(glmfit3),
   EvalModelAUC(glmfit4), EvalModelAUC(glmfit5))
 
+# We can also try to use linear discrimatory analysis, and return
+# a vector of the confusion matrix accuracy
+ldafit1 <- lda(Playoff ~ OPS + ERA, data = binary_train)
+ldafit2 <- lda(Playoff ~ OPS + ERA + BB + HA + BBA, data = binary_train)
+Evallda <- function(model) {
+  pred <- predict(model)
+  lda.class <- pred$class
+  return(sum(diag(table(lda.class, binary_train$Playoff)))/nrow(binary_train))
+}
+c(Evallda(ldafit1), Evallda(ldafit2))
+
