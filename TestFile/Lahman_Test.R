@@ -335,3 +335,12 @@ c(EvalModelCF(glmfit6), EvalModelAUC(glmfit6))
 
 # View glmfit6 coefficients
 glmfit6$coefficients
+
+# For convenience we create new varibales to predict on our testing set.
+best_model_glm <- glmfit6
+best_model_lda <- ldafit1
+best_model_tree <- CARTfit
+best_model_boost <- boostfit
+
+
+
