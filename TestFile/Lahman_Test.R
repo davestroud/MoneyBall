@@ -247,5 +247,7 @@ ggplot(train, aes(W, Salary)) + geom_point(aes(color = Playoff)) +
   xlab('Runs') + ylab('Team Salary') +
   ggtitle('Total Wins By Salary')
 
+# Correlation vs salary
+cor(train$W, train$Salary)
 
 
