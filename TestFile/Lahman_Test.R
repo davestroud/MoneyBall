@@ -213,3 +213,36 @@ ggplot(train, aes(R, OPS)) +
   ggtitle(paste0('Runs by On Base Plus Slugging\n Stratified by Wins\n Corelation: ', 
                  round(cor(train_nums$R, train_nums$OPS), 3)))
 
+
+p1 <- ggplot(train, aes(RA, ERA)) + 
+  geom_point(aes(color = W)) + 
+  scale_fill_discrete(name = 'Wins') +
+  xlab('Runs Against') + ylab('Earned Run Average') +
+  ggtitle(paste0('Runs Against by ERA\n Stratified by Wins\n Corelation: ', 
+                 round(cor(train_nums$RA, train_nums$ERA), 3)))
+p2 <- ggplot(train, aes(RA, SO)) + 
+  geom_point(aes(color = W)) + 
+  scale_fill_discrete(name = 'Wins') +
+  xlab('Runs Against') + ylab('Strike Outs') +
+  ggtitle(paste0('Runs Against by Strike Outs\n Stratified by Wins\n Corelation: ', 
+                 round(cor(train_nums$RA, train_nums$SO), 3)))
+p3 <- ggplot(train, aes(R, HA)) + 
+  geom_point(aes(color = W)) + 
+  scale_fill_discrete(name = 'Wins') +
+  xlab('Runs Against') + ylab('Hits Against') +
+  ggtitle(paste0('Runs Against by Hits Allowed\n Stratified by Wins\n Corelation: ', 
+                 round(cor(train_nums$RA, train_nums$HA), 3)))
+p4 <- ggplot(train, aes(RA, E)) + 
+  geom_point(aes(color = W)) + 
+  scale_fill_discrete(name = 'Wins') +
+  xlab('Runs Against') + ylab('Errors') +
+  ggtitle(paste0('Runs Against by Errors\n Stratified by Wins\n Corelation: ', 
+                 round(cor(train_nums$RA, train_nums$E), 3)))
+
+grid.arrange(p1, p2, p3, p4, ncol = 2)
+
+
+
+
+
+
