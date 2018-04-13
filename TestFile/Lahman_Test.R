@@ -320,3 +320,5 @@ boostfit <- gbm(Playoff ~ OPS + ERA + SF + SO + HA + BBA + DP + HRA + HR + AB + 
 # training accuracy CF
 boostpred <- predict(boostfit, n.trees = 5000)
 table(boostpred > 0.5, binary_train$Playoff)
+
+sum(diag(table(boostpred > 0.5, binary_train$Playoff)))/nrow(binary_train)
