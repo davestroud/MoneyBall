@@ -328,3 +328,7 @@ ROCRpredBoost <- prediction(boostpred, binary_train$Playoff)
 as.numeric(performance(ROCRpredBoost, 'auc')@y.values)
 
 summary(boostfit)
+
+# Update logistic regression
+glmfit6 <- glm(Playoff ~ OPS + ERA + BB + HA + BBA, data = binary_train, family = binomial)
+c(EvalModelCF(glmfit6), EvalModelAUC(glmfit6))
