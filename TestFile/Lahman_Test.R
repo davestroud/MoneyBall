@@ -313,3 +313,10 @@ sum(diag(table(trainPredCART[,2] > 0.5, binary_train$Playoff))) / nrow(binary_tr
 ROCRpredCART <- prediction(trainPredCART[,2], binary_train$Playoff)
 as.numeric(performance(ROCRpredCART, 'auc')@y.values)
 
+
+# Gradient Boosting
+set.seed(3)
+boostfit <- gbm(Playoff ~ OPS + ERA + SF + SO + HA + BBA + DP + HRA + HR + AB + X2B + H + SB + BB + HBP + SOA + E + SHO + Salary + X3B + CG + BA + CS, data = binary_train, distribution="bernoulli", n.trees=5000, interaction.depth=4, shrinkage =0.2)
+# training accuracy CF
+boostpred <- predict(boostfit, n.trees = 5000)
+table(boostpred > 0.5, binary_train$Playoff)
