@@ -332,3 +332,6 @@ summary(boostfit)
 # Update logistic regression
 glmfit6 <- glm(Playoff ~ OPS + ERA + BB + HA + BBA, data = binary_train, family = binomial)
 c(EvalModelCF(glmfit6), EvalModelAUC(glmfit6))
+
+# View glmfit6 coefficients
+glmfit6$coefficients
