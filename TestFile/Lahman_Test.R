@@ -293,3 +293,16 @@ Evallda <- function(model) {
 }
 c(Evallda(ldafit1), Evallda(ldafit2))
 
+
+set.seed(321)
+numFolds <- trainControl(method = 'cv', number = 10)
+cpGrid <- expand.grid(.cp = seq(0.001, 0.05, 0.001))
+best_cp <- train(Playoff ~ ., data = binary_train, method = 'rpart', trControl = numFolds, tuneGrid = cpGrid)
+CARTfit <- rpart(Playoff ~ OPS + SF + SO + HA + RA + SV + BBA + DP + HRA + HR + AB + R + ER + X2B + H + SB + BB + HBP + SOA + E + SHO + OBP + Salary + SLG + X3B + CG + BA + CS + OPS + ERA, data = binary_train, method = 'class', cp = best_cp$bestTune)
+# plot tree  
+prp(CARTfit)
+
+
+
+
+
