@@ -322,3 +322,9 @@ boostpred <- predict(boostfit, n.trees = 5000)
 table(boostpred > 0.5, binary_train$Playoff)
 
 sum(diag(table(boostpred > 0.5, binary_train$Playoff)))/nrow(binary_train)
+
+# AUC
+ROCRpredBoost <- prediction(boostpred, binary_train$Playoff)
+as.numeric(performance(ROCRpredBoost, 'auc')@y.values)
+
+summary(boostfit)
