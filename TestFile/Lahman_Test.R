@@ -251,3 +251,20 @@ ggplot(train, aes(W, Salary)) + geom_point(aes(color = Playoff)) +
 cor(train$W, train$Salary)
 
 
+binary_train <- train
+# change Playoff to 1 for Y and 0 for N to work with ROCR
+binary_train$Playoff <- ifelse(binary_train$Playoff == 'Y', 1, 0)
+# fit multiple
+glmfit1 <- glm(Playoff ~ OPS, data = binary_train, family = binomial)
+glmfit2 <- glm(Playoff ~ OPS + ERA, data = binary_train, family = binomial)
+glmfit3 <- glm(Playoff ~ OPS + ERA + E, data = binary_train, family = binomial)
+glmfit4 <- glm(Playoff ~ OPS + ERA + E + Salary, data = binary_train, family = binomial)
+glmfit5 <- glm(Playoff ~ OPS + SF + SO + HA + RA + SV + BBA + DP + HRA + HR + 
+                 AB + R + ER + X2B + H + SB + BB + HBP + SOA + E + SHO + OBP + Salary +
+                 SLG + X3B + CG + BA + CS + OPS + ERA, data = binary_train, family = binomial)
+
+
+
+
+
+
