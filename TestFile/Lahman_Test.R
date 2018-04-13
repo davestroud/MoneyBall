@@ -81,3 +81,29 @@ ggplot(wildcard_era_teams, aes(teamID, W, color = Playoff)) + geom_point() +
   geom_hline(yintercept = 94, linetype = 2) +
   ggtitle('Wins By Team Colored By Playoffs Appearances')
 
+
+# summarize new data extracing out desired columns
+team_wins <- wildcard_era_teams %>%
+  group_by(teamID, yearID, lgID, divID, Playoff) %>%
+  summarise(W = W) %>%
+  ungroup() %>%
+  arrange(teamID)
+
+nl <- ggplot(subset(team_wins, (lgID == 'NL')), aes(yearID, W)) + 
+  geom_line(aes(color = teamID)) +
+  facet_wrap(~ divID, nrow = 3) +
+  xlab('Year') + ylab('Wins') +
+  ylim(50,100) +
+  ggtitle('Wins By Year - National League')
+al <- ggplot(subset(team_wins, (lgID == 'AL')), aes(yearID, W)) + 
+  geom_line(aes(color = teamID)) +
+  facet_wrap(~ divID, nrow = 3) +
+  ylim(50,100) +
+  xlab('Year') + ylab('') +
+  ggtitle('Wins By Year -  American League')
+
+grid.arrange(nl, al, ncol = 2, name = 'Wins By Year Per League and Divison' )
+
+
+
+
