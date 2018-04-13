@@ -149,4 +149,23 @@ train <- subset(wildcard_era_teams, split == TRUE)
 test <- subset(wildcard_era_teams, split == FALSE)
 dim(train)
 
+# subset data to only include numeric and integer variables
+nums <- sapply(train, is.numeric) | sapply(train, is.integer)
+# create data frame for correlation
+train_nums <- train[,nums]
+# exclude unwanted variables
+train_nums <- train_nums[,-which(names(train_nums) %in% c('yearID', 'Rank', 'G', 'Ghome', 'IPouts', 'attendance', 'BPF', 'PPF'))]
+#compute correlation matrix
+corMatrix <- cor(train_nums)
+# plot matrix
+corrplot(corMatrix, method = "circle", type="lower", tl.cex=0.55, cl.cex = 0.5, add = FALSE, tl.pos="lower")
+corrplot(corMatrix, method = "shade", type="upper", tl.cex=0.55, cl.cex = 0.5, add = TRUE, tl.pos="upper")
+
+
+
+
+
+
+
+
 
