@@ -143,7 +143,10 @@ team_salaries <- wildcard_era_salaries %>%
 wildcard_era_teams <- merge(wildcard_era_teams, team_salaries, by = c('teamID', 'yearID'))
 
 
-
-
+set.seed(101)
+split <- sample.split(wildcard_era_teams$Playoff, 0.8)
+train <- subset(wildcard_era_teams, split == TRUE)
+test <- subset(wildcard_era_teams, split == FALSE)
+dim(train)
 
 
