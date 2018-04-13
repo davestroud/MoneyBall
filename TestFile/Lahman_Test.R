@@ -68,4 +68,7 @@ table(wildcard_era_teams$W > 94, wildcard_era_teams$Playoff == 'N')
 
 paste0("With an accuracy of ", round(407 /(407 + 1), 3))
 
-
+# And looking at the data further
+over94_no_playoff <- wildcard_era_teams[(wildcard_era_teams$W >= 94) & 
+                                          (wildcard_era_teams$Playoff == 'N'), ]
+paste0("Team with 96 wins and didn't make playoffs is The ", over94_no_playoff$name)
