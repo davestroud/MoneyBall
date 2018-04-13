@@ -178,6 +178,31 @@ ggplot(train, aes(W, Diff)) + geom_point(aes(color = Playoff)) +
   ggtitle('Wins Per Runs Diffential\n colored by Playoff Teams')
 
 
+p1 <- ggplot(train, aes(R, BA)) + 
+  geom_point(aes(color = W)) + 
+  scale_fill_discrete(name = 'Wins') +
+  xlab('Runs') + ylab('Batting Average') +
+  ggtitle(paste0('Runs by Batting Average\n Stratified by Wins\n Corelation: ', 
+                 round(cor(train_nums$R, train_nums$BA), 3)))
+p2 <- ggplot(train, aes(R, OBP)) + 
+  geom_point(aes(color = W)) + 
+  scale_fill_discrete(name = 'Wins') +
+  xlab('Runs') + ylab('On Base Percentage') +
+  ggtitle(paste0('Runs by On Base Percentage\n Stratified by Wins\n Corelation: ', 
+                 round(cor(train_nums$R, train_nums$OBP), 3)))
+p3 <- ggplot(train, aes(R, SLG)) + 
+  geom_point(aes(color = W)) + 
+  scale_fill_discrete(name = 'Wins') +
+  xlab('Runs') + ylab('Slugging Percentage') +
+  ggtitle(paste0('Runs by Slugging Percentage\n Stratified by Wins\n Corelation: ', 
+                 round(cor(train_nums$R, train_nums$SLG), 3)))
+p4 <- ggplot(train, aes(R, HR)) + 
+  geom_point(aes(color = W)) + 
+  scale_fill_discrete(name = 'Wins') +
+  xlab('Runs') + ylab('Home Runs') +
+  ggtitle(paste0('Runs by Home Runs\n Stratified by Wins\n Corelation: ', 
+                 round(cor(train_nums$R, train_nums$HR), 3)))
 
+grid.arrange(p1, p2, p3, p4, ncol = 2)
 
 
