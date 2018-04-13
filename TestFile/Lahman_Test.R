@@ -63,6 +63,7 @@ ggplot(wildcard_era_teams, aes(W, color = Playoff)) +
   ggtitle('Histogram of Wins Sorted By Playoff Appearance\nWith line at mean of 94')
 
 
-
+# only care about that lonely one team with the True Positive within the cunfusion matrix
+table(wildcard_era_teams$W > 94, wildcard_era_teams$Playoff == 'N')
 
 
