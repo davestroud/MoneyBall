@@ -104,6 +104,12 @@ al <- ggplot(subset(team_wins, (lgID == 'AL')), aes(yearID, W)) +
 
 grid.arrange(nl, al, ncol = 2, name = 'Wins By Year Per League and Divison' )
 
-
+ggplot(wildcard_era_teams, aes(teamID, W)) + 
+  geom_boxplot(fill = 'blue') + 
+  geom_hline(yintercept = 94, linetype = 2, color = 'black') +
+  geom_hline(yintercept = 88, linetype = 2, color = 'red') + 
+  theme(axis.text.x = element_text(angle = 90)) +
+  xlab('Team Name') + ylab('Wins') +
+  ggtitle('Boxplots of Teams vs Wins')
 
 
