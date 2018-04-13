@@ -342,5 +342,8 @@ best_model_lda <- ldafit1
 best_model_tree <- CARTfit
 best_model_boost <- boostfit
 
-
+# Create binary test set
+binary_test <- test
+# change Playoff to 1 for Y and 0 for N
+binary_test$Playoff <- ifelse(binary_test$Playoff == 'Y', 1, 0)
 
