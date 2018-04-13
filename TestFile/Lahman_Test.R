@@ -302,7 +302,14 @@ CARTfit <- rpart(Playoff ~ OPS + SF + SO + HA + RA + SV + BBA + DP + HRA + HR + 
 # plot tree  
 prp(CARTfit)
 
+# predict on training set
+trainPredCART <- predict(CARTfit)
+# prediction accuracy 
+table(trainPredCART[,2] > 0.5, binary_train$Playoff)
 
+sum(diag(table(trainPredCART[,2] > 0.5, binary_train$Playoff))) / nrow(binary_train)
 
-
+# AUC 
+ROCRpredCART <- prediction(trainPredCART[,2], binary_train$Playoff)
+as.numeric(performance(ROCRpredCART, 'auc')@y.values)
 
