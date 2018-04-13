@@ -173,7 +173,9 @@ p2 <- ggplot(train, aes(W, RA)) + geom_point(aes(color = Playoff)) +
 
 grid.arrange(p1, p2, ncol = 2)
 
-
+ggplot(train, aes(W, Diff)) + geom_point(aes(color = Playoff)) + 
+  xlab('Wins') + ylab('Difference in Runs (R - RA)') +
+  ggtitle('Wins Per Runs Diffential\n colored by Playoff Teams')
 
 
 
