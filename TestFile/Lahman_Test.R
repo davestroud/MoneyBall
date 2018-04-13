@@ -363,3 +363,13 @@ table(predTestlda$class, binary_test$Playoff)
 
 sum(diag(table(predTestlda$class, binary_test$Playoff))) / nrow(binary_test)
 
+# Decision Tree predictions
+predTestCART <- predict(best_model_tree, newdata = binary_test)
+
+table(predTestCART[,2] > 0.5, binary_test$Playoff)
+
+sum(diag(table(predTestCART[,2] > 0.5, binary_test$Playoff))) / nrow(binary_test)
+
+ROCRpredlCART <- prediction(predTestCART[,2], binary_test$Playoff)
+as.numeric(performance(ROCRpredCART, 'auc')@y.values)
+
