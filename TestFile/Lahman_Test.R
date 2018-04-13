@@ -263,8 +263,20 @@ glmfit5 <- glm(Playoff ~ OPS + SF + SO + HA + RA + SV + BBA + DP + HRA + HR +
                  AB + R + ER + X2B + H + SB + BB + HBP + SOA + E + SHO + OBP + Salary +
                  SLG + X3B + CG + BA + CS + OPS + ERA, data = binary_train, family = binomial)
 
+with(train, table(Playoff))
 
-
+EvalModelCF <- function(model) {
+  pred <- predict(model, type = 'response')
+  return(sum(diag(table(pred > 0.5, binary_train$Playoff))) / nrow(binary_train))      
+}
+EvalModelAUC <- function(model) {
+  pred <- predict(model, type = 'response')
+  ROCRpred <- prediction(pred, binary_train$Playoff)
+  return(as.numeric(performance(ROCRpred, 'auc')@y.values))
+}
+# predict on training set CF
+c(EvalModelCF(glmfit1), EvalModelCF(glmfit2), EvalModelCF(glmfit3),
+  EvalModelCF(glmfit4), EvalModelCF(glmfit5))
 
 
 
