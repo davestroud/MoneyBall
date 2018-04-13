@@ -206,3 +206,10 @@ p4 <- ggplot(train, aes(R, HR)) +
 grid.arrange(p1, p2, p3, p4, ncol = 2)
 
 
+ggplot(train, aes(R, OPS)) + 
+  geom_point(aes(color = W)) + 
+  scale_fill_discrete(name = 'Wins') +
+  xlab('Runs') + ylab('On Base Plus Slugging') +
+  ggtitle(paste0('Runs by On Base Plus Slugging\n Stratified by Wins\n Corelation: ', 
+                 round(cor(train_nums$R, train_nums$OPS), 3)))
+
