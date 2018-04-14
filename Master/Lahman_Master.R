@@ -76,8 +76,13 @@ Teams[is.na(Teams$SF)] <- 0
 Teams$HBP[is.na(Teams$HBP)] <- 0
 
 set.seed(101)
-split <- sample.split(Teams$Playoff, 0.8)
+split <- sample.split(Teams$Playoff, 0.6)
 train <- subset(Teams, split == TRUE)
 test <- subset(Teams, split == FALSE)
 dim(train)
+
+
+
+
+
 
