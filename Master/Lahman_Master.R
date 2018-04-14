@@ -32,15 +32,13 @@ glimpse(Teams)
 #lets attach newAuto so we don't have to keep writing Teams$
 attach(Teams)
 
-ftable(addmargins(table(WSWin,Playoff)))
-
+ftable(addmargins(table(teamID,Playoff)))
 
 ggplot(Teams, aes(teamID, W, color = Playoff)) + geom_point() + 
   theme(axis.text.x = element_text(angle = 45)) +
   xlab('Team') + ylab('Wins') + 
   geom_hline(yintercept = 94, linetype = 2) +
   ggtitle('Wins By Team Colored By Playoffs Appearances')
-
 
 team_wins <- Teams %>%
   group_by(teamID, yearID, lgID, divID, Playoff) %>%
@@ -66,7 +64,6 @@ al <- ggplot(subset(team_wins, (lgID == 'AL')), aes(yearID, W)) +
 grid.arrange(nl, al, ncol = 2, name = 'Wins By Year Per League and Divison' )
 
 
-
 ggplot(Teams, aes(teamID, W)) + 
   geom_boxplot(fill = 'blue') + 
   geom_hline(yintercept = 94, linetype = 2, color = 'black') +
@@ -74,3 +71,11 @@ ggplot(Teams, aes(teamID, W)) +
   theme(axis.text.x = element_text(angle = 90)) +
   xlab('Team Name') + ylab('Wins') +
   ggtitle('Boxplots of Teams vs Wins')
+
+
+# transform NA for sac flies and hit by pitches to O so can compute correlation matrix 
+Teams[is.na(Teams$SF)] <- 0
+Teams$HBP[is.na(Teams$HBP)] <- 0
+
+
+
