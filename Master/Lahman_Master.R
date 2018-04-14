@@ -10,8 +10,6 @@ library(MASS)
 
 library(ISLR)
 
-
-
 Teams <- read_csv("/Users/davidstroud/Dropbox/Stats2/MoneyBall/Master/baseballdatabank-master/core/Teams.csv")
 Salaries <- read_csv("/Users/davidstroud/Dropbox/Stats2/MoneyBall/Master/baseballdatabank-master/core/Salaries.csv")
 
@@ -77,5 +75,9 @@ ggplot(Teams, aes(teamID, W)) +
 Teams[is.na(Teams$SF)] <- 0
 Teams$HBP[is.na(Teams$HBP)] <- 0
 
-
+set.seed(101)
+split <- sample.split(Teams$Playoff, 0.8)
+train <- subset(Teams, split == TRUE)
+test <- subset(Teams, split == FALSE)
+dim(train)
 
