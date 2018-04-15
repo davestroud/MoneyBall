@@ -16,8 +16,6 @@ Salaries <- read_csv("/Users/davidstroud/Dropbox/Stats2/MoneyBall/Master/basebal
 # New year column, predictor, for teams that make the playoffs
 Teams$Playoff <- Teams$DivWin
 
-# Teams$Playoff[Teams$WCWin == 'Y'] <- 'Y'
-
 # Turn Playoff into a factor variable
 Teams$Playoff <- factor(Teams$Playoff)
 
@@ -27,7 +25,7 @@ Teams <- filter(Teams, yearID > 1969)
 dim(Teams)
 glimpse(Teams)
 
-#lets attach newAuto so we don't have to keep writing Teams$
+# attach so we don't have to keep writing Teams$
 attach(Teams)
 
 ftable(addmargins(table(teamID,Playoff)))
@@ -81,6 +79,8 @@ train <- subset(Teams, split == TRUE)
 test <- subset(Teams, split == FALSE)
 dim(train)
 
+
+train$Playoff <- ifelse(binary_train$Playoff == 'Y', 1, 0)
 # Fit glm model: model
 model <- glm(Playoff~G+W+L+R+AB+H+HR+BB+SO+SB+CS+HBP+RA+ER
              +ERA+CG+SHO+SV+IPouts, family = "binomial", train)
