@@ -2,29 +2,19 @@ library(tidyverse)
 library(ggplot2)
 library(gridExtra)
 library(caTools)
-library(caret)
 library(corrplot)
-library(ROCR)
 library(memisc)
 library(rpart)
 library(rpart.plot)
-library(MASS)
 library(gbm)
-
-
-
-
-library(tidyverse)
-library(ggplot2)
 library(caret)
 library(readr)
-
 # Libraries from Dr. Turners example
 library(glmnet)
 library(ROCR)
 library(MASS)
-
 library(ISLR)
+library(e1071) # Used for confusion matrix
 
 Teams <- read_csv("/Users/davidstroud/Dropbox/Stats2/MoneyBall/Master/baseballdatabank-master/core/Teams.csv")
 Salaries <- read_csv("/Users/davidstroud/Dropbox/Stats2/MoneyBall/Master/baseballdatabank-master/core/Salaries.csv")
