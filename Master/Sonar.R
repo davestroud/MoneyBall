@@ -35,8 +35,8 @@ p_class <- ifelse(p > 0.50, 0,1 )
 # https://stackoverflow.com/questions/19871043/r-package
 # -caret-confusionmatrix-with-missing-categories
 # overide to get confusion matrix to work
-install.packages('e1071', dependencies=TRUE)
-u = union(p_class, test$Class)
+library(e1071)
+u = union(p_class, test$Playoff)
 t = table(factor(p_class, u), factor(test$Class, u))
 confusionMatrix(t)
 
