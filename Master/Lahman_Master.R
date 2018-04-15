@@ -68,7 +68,6 @@ al <- ggplot(subset(team_wins, (lgID == 'AL')), aes(yearID, W)) +
 # Grid to review plots
 grid.arrange(nl, al, ncol = 2, name = 'Wins By Year Per League and Divison' )
 
-
 ggplot(Teams, aes(teamID, W)) + 
   geom_boxplot(fill = 'blue') + 
   geom_hline(yintercept = 94, linetype = 2, color = 'black') +
@@ -76,7 +75,6 @@ ggplot(Teams, aes(teamID, W)) +
   theme(axis.text.x = element_text(angle = 90)) +
   xlab('Team Name') + ylab('Wins') +
   ggtitle('Boxplots of Teams vs Wins')
-
 
 # transform NA for sac flies and hit by pitches to O so can compute correlation matrix 
 Teams[is.na(Teams$SF)] <- 0
@@ -94,7 +92,6 @@ dim(train)
 train$Playoff <- ifelse(train$Playoff == 'Y', 1, 0)
 test$Playoff <- ifelse(test$Playoff == 'Y', 1, 0)
 
-
 # Fit glm model: model
 model <- glm(Playoff~G+W+L+R+AB+H+HR+BB+SO+SB+CS+HBP+RA+ER
              +ERA+CG+SHO+SV+IPouts, family = "binomial", train)
@@ -105,7 +102,6 @@ p <- predict(model, test, type = "response")
 # Calculate class probabilities: p_class
 p_class <- ifelse(p > 0.50, 0,1 )
 
-
 # https://stackoverflow.com/questions/19871043/r-package
 # -caret-confusionmatrix-with-missing-categories
 # overide to get confusion matrix to work
@@ -113,10 +109,3 @@ library(e1071)
 u = union(p_class, test$Playoff)
 t = table(factor(p_class, u), factor(test$Playoff, u))
 confusionMatrix(t)
-
-
-
-
-
-
-
