@@ -24,3 +24,4 @@ model <- glm(Class ~ ., family = "binomial", train)
 
 # Predict on test: p
 p <- predict(model, test, type = "response")
+  
