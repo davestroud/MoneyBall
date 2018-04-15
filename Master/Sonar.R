@@ -1,5 +1,6 @@
 library(tidyverse)
 library(RCurl)
+library(caret)
 x <- getURL("https://raw.githubusercontent.com/selva86/datasets/master/Sonar.csv")
 Sonar <- read.csv(text = x)
 
@@ -26,4 +27,10 @@ model <- glm(Class ~ ., family = "binomial", train)
 
 # Predict on test: p
 p <- predict(model, test, type = "response")
+
+# Calculate class probabilities: p_class
+p_class <- ifelse(p > 0.50, "M", "R")
+
+# Create confusion matrix ~ not working
+confusionMatrix(p_class, test[["Class"]])
   
