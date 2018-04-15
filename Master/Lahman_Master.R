@@ -81,8 +81,9 @@ train <- subset(Teams, split == TRUE)
 test <- subset(Teams, split == FALSE)
 dim(train)
 
-
-model <- glm(Playoff ~ G+W+L+R+AB+H+HR+BB+SO+SB+CS+HBP+SF+RA+ER
+# Fit glm model: model
+model <- glm(Playoff ~ G+W+L+R+AB+H+HR+BB+SO+SB+CS+HBP+RA+ER
              +ERA+CG+SHO+SV+IPouts, family = "binomial", train)
 
-
+# Predict on test: p
+p <- predict(model, test, type = "response")
