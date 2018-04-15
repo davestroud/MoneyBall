@@ -29,8 +29,19 @@ model <- glm(Class ~ ., family = "binomial", train)
 p <- predict(model, test, type = "response")
 
 # Calculate class probabilities: p_class
-p_class <- ifelse(p > 0.50, "M", "R")
+p_class <- ifelse(p > 0.50, 0,1 )
 
-# Create confusion matrix ~ not working
-confusionMatrix(p_class, test[["Class"]])
-  
+
+# https://stackoverflow.com/questions/19871043/r-package
+# -caret-confusionmatrix-with-missing-categories
+# overide to get confusion matrix to work
+install.packages('e1071', dependencies=TRUE)
+u = union(p_class, test$Class)
+t = table(factor(p_class, u), factor(test$Class, u))
+confusionMatrix(t)
+
+
+
+
+
+
