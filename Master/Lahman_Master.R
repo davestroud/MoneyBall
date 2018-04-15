@@ -82,7 +82,7 @@ test <- subset(Teams, split == FALSE)
 dim(train)
 
 
-
-
+model <- glm(Playoff ~ G+W+L+R+AB+H+HR+BB+SO+SB+CS+HBP+SF+RA+ER
+             +ERA+CG+SHO+SV+IPouts, family = "binomial", train)
 
 
