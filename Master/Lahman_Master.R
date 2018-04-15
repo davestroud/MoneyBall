@@ -43,6 +43,7 @@ team_wins <- Teams %>%
   arrange(teamID)
 
 # Note that the National League Central started in 1994
+# National League plot
 nl <- ggplot(subset(team_wins, (lgID == 'NL')), aes(yearID, W)) + 
   geom_line(aes(color = teamID)) +
   facet_wrap(~ divID, nrow = 3) +
@@ -50,6 +51,7 @@ nl <- ggplot(subset(team_wins, (lgID == 'NL')), aes(yearID, W)) +
   ylim(50,100) +
   ggtitle('Wins By Year - National League')
 
+# American League plot 
 al <- ggplot(subset(team_wins, (lgID == 'AL')), aes(yearID, W)) + 
   geom_line(aes(color = teamID)) +
   facet_wrap(~ divID, nrow = 3) +
@@ -57,6 +59,7 @@ al <- ggplot(subset(team_wins, (lgID == 'AL')), aes(yearID, W)) +
   xlab('Year') + ylab('') +
   ggtitle('Wins By Year -  American League')
 
+# Grid to review plots
 grid.arrange(nl, al, ncol = 2, name = 'Wins By Year Per League and Divison' )
 
 
