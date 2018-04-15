@@ -28,6 +28,14 @@ Teams$Playoff <- factor(Teams$Playoff)
 # Teams after 1969 ~ Year that division wins were recognized.
 Teams <- filter(Teams, yearID > 1969)
 
+Teams$teamID[Teams$teamID == 'CAL'] <- 'LAA'
+Teams$teamID[Teams$teamID == 'FLO'] <- 'MIA'
+Teams$teamID[Teams$teamID == 'ML4'] <- 'MIL'
+Teams$teamID[Teams$teamID == 'MON'] <- 'WAS'
+Teams$teamID[Teams$teamID == 'ANA'] <- 'LAA'
+Teams$teamID[Teams$teamID == 'WS2'] <- 'TEX'
+
+
 dim(Teams)
 glimpse(Teams)
 
