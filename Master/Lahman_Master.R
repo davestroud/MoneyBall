@@ -77,6 +77,7 @@ Teams[is.na(Teams$SF)] <- 0
 Teams$HBP[is.na(Teams$HBP)] <- 0
 
 # Set seed and split teams between training and testing data
+# Note the 60/40 split for logistical regression
 set.seed(101)
 split <- sample.split(Teams$Playoff, 0.6)
 train <- subset(Teams, split == TRUE)
