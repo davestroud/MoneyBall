@@ -73,14 +73,17 @@ ggplot(Teams, aes(teamID, W)) +
 Teams[is.na(Teams$SF)] <- 0
 Teams$HBP[is.na(Teams$HBP)] <- 0
 
+# Set seed and split teams between training and testing data
 set.seed(101)
 split <- sample.split(Teams$Playoff, 0.6)
 train <- subset(Teams, split == TRUE)
 test <- subset(Teams, split == FALSE)
 dim(train)
 
+# change Playoff to 1 for Y and 0 for N to work with ROCR
+train$Playoff <- ifelse(train$Playoff == 'Y', 1, 0)
 
-train$Playoff <- ifelse(binary_train$Playoff == 'Y', 1, 0)
+
 # Fit glm model: model
 model <- glm(Playoff~G+W+L+R+AB+H+HR+BB+SO+SB+CS+HBP+RA+ER
              +ERA+CG+SHO+SV+IPouts, family = "binomial", train)
