@@ -102,6 +102,7 @@ dim(train)
 
 # change Playoff to 1 for Y and 0 for N to work with ROCR
 train$Playoff <- ifelse(train$Playoff == 'Y', 1, 0)
+test$Playoff <- ifelse(test$Playoff == 'Y', 1, 0)
 
 
 # Fit glm model: model
@@ -119,7 +120,7 @@ p_class <- ifelse(p > 0.50, 0,1 )
 # -caret-confusionmatrix-with-missing-categories
 # overide to get confusion matrix to work
 library(e1071)
-u = union(p_class, test$Class)
+u = union(p_class, test$Playoff)
 t = table(factor(p_class, u), factor(test$Playoff, u))
 confusionMatrix(t)
 
