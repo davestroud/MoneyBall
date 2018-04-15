@@ -95,8 +95,10 @@ p <- predict(model, test, type = "response")
 # Calculate class probabilities: p_class
 p_class <- ifelse(p > 0.50, "W", "L")
 
-# Create confusion matrix
+# Create confusion matrix ~ not working
 confusionMatrix(p_class, test[["Playoff"]])
+
+
 
 
 
