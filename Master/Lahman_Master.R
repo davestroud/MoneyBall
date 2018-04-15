@@ -1,5 +1,21 @@
 library(tidyverse)
 library(ggplot2)
+library(gridExtra)
+library(caTools)
+library(caret)
+library(corrplot)
+library(ROCR)
+library(memisc)
+library(rpart)
+library(rpart.plot)
+library(MASS)
+library(gbm)
+
+
+
+
+library(tidyverse)
+library(ggplot2)
 library(caret)
 library(readr)
 
@@ -95,12 +111,19 @@ model <- glm(Playoff~G+W+L+R+AB+H+HR+BB+SO+SB+CS+HBP+RA+ER
 # Predict on test: p
 p <- predict(model, test, type = "response")
 
-
 # Calculate class probabilities: p_class
-p_class <- ifelse(p > 0.50, "W", "L")
+p_class <- ifelse(p > 0.50, 0,1 )
 
-# Create confusion matrix ~ not working
-confusionMatrix(p_class, test[["Playoff"]])
+
+# https://stackoverflow.com/questions/19871043/r-package
+# -caret-confusionmatrix-with-missing-categories
+# overide to get confusion matrix to work
+library(e1071)
+u = union(p_class, test$Class)
+t = table(factor(p_class, u), factor(test$Playoff, u))
+confusionMatrix(t)
+
+
 
 
 
