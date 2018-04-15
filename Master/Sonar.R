@@ -1,8 +1,10 @@
-
+library(tidyverse)
 library(RCurl)
 x <- getURL("https://raw.githubusercontent.com/selva86/datasets/master/Sonar.csv")
 Sonar <- read.csv(text = x)
 
+glimpse(Sonar)
+summary(Sonar)
 
 # Shuffle row indices: rows
 rows <- sample(nrow(Sonar))

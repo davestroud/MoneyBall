@@ -91,11 +91,12 @@ model <- glm(Playoff~G+W+L+R+AB+H+HR+BB+SO+SB+CS+HBP+RA+ER
 # Predict on test: p
 p <- predict(model, test, type = "response")
 
-# This may not be correct
-class_prediction <-
-  ifelse(p > 0.50,
-         "positive_class",
-         "negative_class"
-  )
+
+# Calculate class probabilities: p_class
+p_class <- ifelse(p > 0.50, "W", "L")
+
+# Create confusion matrix
+confusionMatrix(p_class, test[["Playoff"]])
+
 
 
