@@ -101,8 +101,9 @@ train$Playoff <- ifelse(train$Playoff == 'Y', 1, 0)
 test$Playoff <- ifelse(test$Playoff == 'Y', 1, 0)
 
 # Fit glm model: model
-model <- glm(Playoff~G+W+L+R+AB+H+HR+BB+SO+SB+CS+HBP+RA+ER
-             +ERA+CG+SHO+SV+IPouts, family = "binomial", train)
+model <- glm(Playoff~Rank+G+Ghome+W+L+R+AB+H+HR+RA+ER
+             +ERA+CG+SHO+SV+IPouts+HA+BBA+SOA+E
+               ,family =binomial(link="logit"), train)
 
 # Predict on test: p
 p <- predict(model, test, type = "response")
