@@ -59,7 +59,7 @@ Teams <- read.csv(table1, sep=",", header=T)
 
 # this adds the the division winners to new predictor
 Teams$Playoff <- Teams$DivWin
-
+      
 # this adds the wild card winners to new predictor
 Teams$Playoff[Teams$WCWin == 'Y'] <- 'Y'
 
@@ -97,6 +97,16 @@ attach(Teams)
 
 ftable(addmargins(table(teamID,Playoff)))
 
+ggplot(subset(Teams, Playoff == 'Y'), aes(W)) + 
+  geom_histogram(fill = 'light blue', color = 'black', binwidth = 1) + 
+  geom_vline(xintercept = mean(Teams$W[Teams$Playoff == 'Y']), color = 'red', linetype = 'longdash') +
+  geom_vline(xintercept = median(Teams$W[Teams$Playoff == 'Y']), color = 'green', linetype = 'longdash') +
+  xlab('Frequency') + ylab('Wins') +
+  ggtitle('Histogram of Win Counts\nWith lines at mean and median')
+
+
+
+
 ggplot(Teams, aes(teamID, W, color = Playoff)) + geom_point() + 
   theme(axis.text.x = element_text(angle = 45)) +
   xlab('Team') + ylab('Wins') + 
@@ -108,6 +118,19 @@ team_wins <- Teams %>%
   summarise(W = W) %>%
   ungroup() %>%
   arrange(teamID)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Note that the National League Central started in 1994
 # National League plot
