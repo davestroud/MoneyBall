@@ -97,20 +97,21 @@ attach(Teams)
 
 ftable(addmargins(table(teamID,Playoff)))
 
+# Chart showing win counts ~ need to clean this up
 ggplot(subset(Teams, Playoff == 'Y'), aes(W)) + 
-  geom_histogram(fill = 'light blue', color = 'black', binwidth = 1) + 
+  geom_histogram(fill = 'blue', color = 'black', binwidth = 1) + 
   geom_vline(xintercept = mean(Teams$W[Teams$Playoff == 'Y']), color = 'red', linetype = 'longdash') +
   geom_vline(xintercept = median(Teams$W[Teams$Playoff == 'Y']), color = 'green', linetype = 'longdash') +
-  xlab('Frequency') + ylab('Wins') +
-  ggtitle('Histogram of Win Counts\nWith lines at mean and median')
-
-
+  xlab('Games Played') + ylab('Wins') +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  ggtitle('Number of Wins')
 
 
 ggplot(Teams, aes(teamID, W, color = Playoff)) + geom_point() + 
   theme(axis.text.x = element_text(angle = 45)) +
   xlab('Team') + ylab('Wins') + 
   geom_hline(yintercept = 94, linetype = 2) +
+  theme(plot.title = element_text(hjust = 0.5)) +
   ggtitle('Wins By Team Colored By Playoffs Appearances')
 
 team_wins <- Teams %>%
@@ -153,12 +154,12 @@ al <- ggplot(subset(team_wins, (lgID == 'AL')), aes(yearID, W)) +
 grid.arrange(nl, al, ncol = 2, name = 'Wins By Year Per League and Divison' )
 
 ggplot(Teams, aes(teamID, W)) + 
-  geom_boxplot(fill = 'blue') + 
-  geom_hline(yintercept = 94, linetype = 2, color = 'black') +
-  geom_hline(yintercept = 88, linetype = 2, color = 'red') + 
+  geom_boxplot(fill = 'green') + 
+  geom_hline(yintercept = 94, linetype = 2, color = 'red') +
   theme(axis.text.x = element_text(angle = 90)) +
   xlab('Team Name') + ylab('Wins') +
-  ggtitle('Boxplots of Teams vs Wins')
+  theme(plot.title = element_text(hjust = 0.5)) +
+  ggtitle('Teams vs Wins')
 
 ###########
 
