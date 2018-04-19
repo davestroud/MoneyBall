@@ -10,10 +10,6 @@
 ## ??
 ## ??
 #########################################################
-# Find all packages that are not in the list of installed packages and install packages used if not yet installed
-list.of.packages <- c('ggplot2','tidyverse','gridExtra','caTools','coorplot','memisc','rpart','rpart.plot','gbm','caret','readr','xml2','rvest', 'dplyr', 'tidyr', 'xtable','readr','glmnet','ISLR','leaps','gplots','ROCR','MASS')
-new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
-if(length(new.packages)) install.packages(new.packages,repos="http://cran.rstudio.com/")
 
 # Initializing library packages
 library(ggplot2)
@@ -44,17 +40,7 @@ library(leaps)
 library(boot)
 library(gplots)
 
-
-# create a temp file
-temp <- tempfile()
-# Baseball Zip File Url
-url <- "http://seanlahman.com/files/database/baseballdatabank-master_2018-03-28.zip"
-# fetch the file into the temp. file and download it
-download.file(url, temp, mode="wb")
-# extract the target file from temp. file
-table1 <- unz(temp, "baseballdatabank-master/core/Teams.csv")
-Teams1 <- read.csv(table1, sep=",", header=T)
-Teams <- Teams1
+Teams <- read_csv("Master/baseballdatabank-master/core/Teams.csv")
 
 # Create new column (predictor) for teams that make the playoffs; which includes both Division
 # winners as well as wildcard winners (post 1995).
